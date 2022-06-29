@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    gap: 20px;
+    place-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.header__icon {
+    width: 40px;
+}
+
+.header__title,
+.header__icon {
+    font-size: 25px;
+    color: #ff4545;
+}
