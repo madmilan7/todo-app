@@ -1,0 +1,61 @@
+.task {
+    position: relative;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.19);
+    padding: 20px 20px 20px 40px;
+    border-radius: 8px;
+}
+
+.task__line {
+    position: absolute;
+    width: 8px;
+    height: 80%;
+    border-radius: 50px;
+    left: 12px;
+    top: 50%;
+    background-color: #ff4545;
+    transform: translateY(-50%);
+    content: '';
+    transition: all 0.2s ease;
+}
+
+.task__line__done {
+    background: #69FF34;
+}
+
+.task__status {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.task__close {
+    background: #FF4545;
+}
+
+.task__edit {
+    background: #F0DC2A;
+}
+
+.task__done {
+    background: #69FF34;
+}
+
+.task__title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.task__content {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.ball {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}

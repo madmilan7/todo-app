@@ -6,6 +6,9 @@ import tasks from '../assets/icon/all-task.svg';
 // Styles
 import styles from './Tasks.module.css';
 
+// Components
+import Task from './Task';
+
 const Tasks = () => {
     return (
         <div className={styles.tasks}>
@@ -19,7 +22,14 @@ const Tasks = () => {
                     <option>Done Tasks</option>
                 </select>
             </div>
-            <div className={styles.tasks__container}></div>
+            <div className={styles.tasks__container}>
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+                <Task />
+            </div>
         </div>
     );
 };

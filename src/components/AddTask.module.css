@@ -29,13 +29,14 @@
 }
 
 .addtaskInputs__name {
-    width:100% ;
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
 }
 
-.addtaskInputs__name:focus {
+.addtaskInputs__name:focus,
+.addtaskInputs__content:focus {
     outline: none;
 }
 
