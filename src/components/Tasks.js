@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { v4 as uuid4 } from 'uuid';
 
 // Icons
-import tasks from '../assets/icon/all-task.svg';
+import alltask from '../assets/icon/all-task.svg';
 
 // Styles
 import styles from './Tasks.module.css';
@@ -9,11 +10,17 @@ import styles from './Tasks.module.css';
 // Components
 import Task from './Task';
 
+// Context
+import { TaskContext } from '../context/TaskContextProvider';
+
 const Tasks = () => {
+
+    const { tasks } = useContext(TaskContext);
+
     return (
         <div className={styles.tasks}>
             <div className={styles.tasks__title}>
-                <img src={tasks} alt='all-task' />
+                <img src={alltask} alt='all-task' />
                 <h2 className={styles.tasks__title__text}>All Tasks</h2>
             </div>
             <div className={styles.tasks__sort}>
@@ -23,12 +30,16 @@ const Tasks = () => {
                 </select>
             </div>
             <div className={styles.tasks__container}>
-                <Task />
-                <Task />
-                <Task />
-                <Task />
-                <Task />
-                <Task />
+                {
+                    tasks.map(task => (
+                        <Task
+                            key={uuid4()}
+                            isDone={task.isDone}
+                            topic={task.topic}
+                            content={task.content}
+                        />
+                    ))
+                }
             </div>
         </div>
     );

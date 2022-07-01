@@ -19,6 +19,18 @@
     transition: all 0.2s ease;
 }
 
+.task del {
+    color: rgba(0, 0, 0, 0.486);
+}
+
+.done__true {
+    background-color: #69FF34;
+}
+
+.done__false {
+    background-color: #FF4545;
+}
+
 .task__line__done {
     background: #69FF34;
 }

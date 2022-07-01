@@ -5,16 +5,19 @@ import Header from './components/Header';
 import AddTask from './components/AddTask';
 import Tasks from './components/Tasks';
 
+// Context
+import TaskContextProvider from './context/TaskContextProvider';
+
 function App() {
 
   return (
-    <div className="App">
+    <TaskContextProvider>
       <Header />
       <div className='container'>
         <AddTask />
         <Tasks />
       </div>
-    </div>
+    </TaskContextProvider>
   );
 }
 
