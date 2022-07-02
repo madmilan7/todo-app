@@ -1,24 +1,15 @@
 import React, { createContext, useState } from 'react';
+import { v4 as uuid4} from 'uuid';
 
 export const TaskContext = createContext();
 
 const TaskContextProvider = ({ children }) => {
 
-    const [tasks, setTasks] = useState([
-        {
-            isDone: false,
-            topic: "this is test",
-            content: "this is test from context , content lorem randoem"
-        },
-        {
-            isDone: true,
-            topic: "this is test two",
-            content: "this is test from context , content lorem randoem"
-        }
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     const addTasks = (topic, content) => {
         const newTask = {
+            id: uuid4(),
             isDone: false,
             topic,
             content
@@ -27,7 +18,7 @@ const TaskContextProvider = ({ children }) => {
     }
 
     return (
-        <TaskContext.Provider value={{ tasks, newTask }}>
+        <TaskContext.Provider value={{ tasks, addTasks }}>
             {children}
         </TaskContext.Provider>
     );

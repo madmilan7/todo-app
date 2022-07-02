@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { v4 as uuid4 } from 'uuid';
 
 // Icons
 import alltask from '../assets/icon/all-task.svg';
@@ -33,7 +32,7 @@ const Tasks = () => {
                 {
                     tasks.map(task => (
                         <Task
-                            key={uuid4()}
+                            key={task.id}
                             isDone={task.isDone}
                             topic={task.topic}
                             content={task.content}
