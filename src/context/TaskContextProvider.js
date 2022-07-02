@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { v4 as uuid4} from 'uuid';
+import { v4 as uuid4 } from 'uuid';
 
 export const TaskContext = createContext();
 
@@ -17,8 +17,20 @@ const TaskContextProvider = ({ children }) => {
         setTasks([...tasks, newTask]);
     }
 
+    const deleteTask = (id) => {
+        const newTask = tasks.filter(task => task.id !== id);
+        setTasks(newTask);
+    }
+
+    const doneTask = (id) => {
+        const newTask = [...tasks];
+        const index = newTask.findIndex(task => task.id === id);
+        newTask[index].isDone = !newTask[index].isDone;
+        setTasks(newTask);
+    }
+
     return (
-        <TaskContext.Provider value={{ tasks, addTasks }}>
+        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask }}>
             {children}
         </TaskContext.Provider>
     );
