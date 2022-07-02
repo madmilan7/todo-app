@@ -17,8 +17,17 @@ const TaskContextProvider = ({ children }) => {
         }
     ]);
 
+    const addTasks = (topic, content) => {
+        const newTask = {
+            isDone: false,
+            topic,
+            content
+        }
+        setTasks([...tasks, newTask]);
+    }
+
     return (
-        <TaskContext.Provider value={{tasks}}>
+        <TaskContext.Provider value={{ tasks, newTask }}>
             {children}
         </TaskContext.Provider>
     );
