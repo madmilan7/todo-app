@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { v4 as uuid4 } from 'uuid';
 
 export const TaskContext = createContext();
@@ -7,6 +7,12 @@ const TaskContextProvider = ({ children }) => {
 
     const [tasks, setTasks] = useState([]);
     const [popUp, setPopUp] = useState({ is: false, id: null });
+    const [doneTaskList, setDoneTaskList] = useState([]);
+
+    useEffect(() => {
+        const allDoneTask = tasks.filter(task => task.isDone === true);
+        setDoneTaskList(allDoneTask);
+    }, [tasks]);
 
     const addTasks = (topic, content) => {
         const newTask = {
@@ -42,7 +48,7 @@ const TaskContextProvider = ({ children }) => {
     }
 
     return (
-        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask, setId, editTask }}>
+        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask, setId, editTask, doneTaskList }}>
             {children}
         </TaskContext.Provider>
     );

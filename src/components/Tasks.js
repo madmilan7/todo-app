@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 // Icons
 import alltask from '../assets/icon/all-task.svg';
@@ -14,7 +14,16 @@ import { TaskContext } from '../context/TaskContextProvider';
 
 const Tasks = () => {
 
-    const { tasks } = useContext(TaskContext);
+    const { tasks, doneTaskList } = useContext(TaskContext);
+    const [all, setAll] = useState(true);
+
+    const selectHandler = (event) => {
+        if (event.target.value === 'all') {
+            setAll(true);
+        } else if (event.target.value === 'done') {
+            setAll(false);
+        }
+    }
 
     return (
         <div className={styles.tasks}>
@@ -23,22 +32,32 @@ const Tasks = () => {
                 <h2 className={styles.tasks__title__text}>All Tasks</h2>
             </div>
             <div className={styles.tasks__sort}>
-                <select>
-                    <option>All Tasks</option>
-                    <option>Done Tasks</option>
+                <select onClick={selectHandler}>
+                    <option value='all'>All Tasks</option>
+                    <option value='done'>Done Tasks</option>
                 </select>
             </div>
             <div className={styles.tasks__container}>
                 {
-                    tasks.map(task => (
-                        <Task
-                            key={task.id}
-                            id={task.id}
-                            isDone={task.isDone}
-                            topic={task.topic}
-                            content={task.content}
-                        />
-                    ))
+                    all ?
+                        tasks.map(task => (
+                            <Task
+                                key={task.id}
+                                id={task.id}
+                                isDone={task.isDone}
+                                topic={task.topic}
+                                content={task.content}
+                            />
+                        )) :
+                        doneTaskList.map(task => (
+                            <Task
+                                key={task.id}
+                                id={task.id}
+                                isDone={task.isDone}
+                                topic={task.topic}
+                                content={task.content}
+                            />
+                        ))
                 }
             </div>
         </div>
