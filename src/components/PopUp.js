@@ -12,12 +12,12 @@ const PopUp = () => {
     const [text, setText] = useState("");
 
     const submitHandler = (isOk) => {
-        if (isOk) {
+        if (isOk === true) {
             editTask(text);
         }
         setPopUp({ is: false, item: null });
         setText("");
-    }
+    };
 
     const changeHandler = (event) => {
         setText(event.target.value);
@@ -36,12 +36,12 @@ const PopUp = () => {
             <div className={styles.popUp__buttons}>
                 <button
                     className={`${styles.popUp__button} ${styles.confirm}`}
-                    onClick={submitHandler(true)}>
+                    onClick={() => submitHandler(true)}>
                     Confirm
                 </button>
                 <button
                     className={`${styles.popUp__button} ${styles.cancel}`}
-                    onClick={submitHandler(false)}>
+                    onClick={() => submitHandler(false)}>
                     Cancel
                 </button>
             </div>
