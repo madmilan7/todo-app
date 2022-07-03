@@ -8,14 +8,14 @@ import { TaskContext } from '../context/TaskContextProvider';
 
 const Task = ({ isDone, topic, content, id }) => {
 
-    const { deleteTask, doneTask } = useContext(TaskContext);
+    const { deleteTask, doneTask, setId } = useContext(TaskContext);
 
     return (
         <div className={styles.task}>
             <span className={isDone ? `${styles.task__line} ${styles.done__true}` : `${styles.task__line} ${styles.done__false}`} ></span>
             <div className={styles.task__status}>
                 <div className={`${styles.task__close} ${styles.ball}`} onClick={() => deleteTask(id)}></div>
-                <div className={`${styles.task__edit} ${styles.ball}`}></div>
+                <div className={`${styles.task__edit} ${styles.ball}`} onClick={() => setId(id)}></div>
                 <div className={`${styles.task__done} ${styles.ball}`} onClick={() => doneTask(id)}></div>
             </div>
             <h4 className={styles.task__title}>{isDone ? <del>{topic}</del> : topic}</h4>

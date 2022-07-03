@@ -6,6 +6,7 @@ export const TaskContext = createContext();
 const TaskContextProvider = ({ children }) => {
 
     const [tasks, setTasks] = useState([]);
+    const [popUp, setPopUp] = useState({ is: false, id: null });
 
     const addTasks = (topic, content) => {
         const newTask = {
@@ -29,8 +30,19 @@ const TaskContextProvider = ({ children }) => {
         setTasks(newTask);
     }
 
+    const setId = (id) => {
+        setPopUp({ is: !popUp.is, id: id });
+    }
+
+    const editTask = (text) => {
+        const newTask = [...tasks];
+        const index = newTask.findIndex(task => task.id === popUp.id);
+        newTask[index].topic = text;
+        setTasks(newTask);
+    }
+
     return (
-        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask }}>
+        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask, setId, editTask }}>
             {children}
         </TaskContext.Provider>
     );
