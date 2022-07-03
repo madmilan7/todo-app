@@ -34,6 +34,10 @@
     border: none;
 }
 
+.popUp__topic:focus {
+    outline: none;
+}
+
 .popUp__buttons {
     margin-top: 25px;
     display: flex;
@@ -56,4 +60,12 @@
 
 .confirm {
     background-color: #69FF34;
+}
+
+.cancel:hover {
+    background-color: #dd3d3d;
+}
+
+.confirm:hover {
+    background-color: #5aad3c;
 }

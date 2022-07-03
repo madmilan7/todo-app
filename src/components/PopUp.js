@@ -15,7 +15,7 @@ const PopUp = () => {
         if (isOk) {
             editTask(text);
         }
-        setPopUp({ is: false, id: null });
+        setPopUp({ is: false, item: null });
         setText("");
     }
 
@@ -26,7 +26,13 @@ const PopUp = () => {
     return (
         <div className={popUp.is === false ? `${styles.popUp}` : `${styles.popUp} ${styles.popUp__show}`}>
             <h4 className={styles.popUp__title}>you are editing: </h4>
-            <input className={styles.popUp__topic} type="text" value={text} onChange={changeHandler} />
+            <input
+                className={styles.popUp__topic}
+                type="text"
+                value={text}
+                onChange={changeHandler}
+                placeholder={popUp.item !== null ? "you editing"+ popUp.item.topic : "nothing"}
+            />
             <div className={styles.popUp__buttons}>
                 <button
                     className={`${styles.popUp__button} ${styles.confirm}`}
