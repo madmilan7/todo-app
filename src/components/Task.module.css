@@ -16,7 +16,6 @@
     background-color: #ff4545;
     transform: translateY(-50%);
     content: '';
-    transition: all 0.2s ease;
 }
 
 .task del {

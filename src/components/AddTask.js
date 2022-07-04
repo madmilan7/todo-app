@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Icons
 import addtask from '../assets/icon/add-task.svg';
@@ -24,11 +26,20 @@ const AddTask = () => {
 
     const submitHandler = () => {
         setText({ topic: '', content: '' });
-        addTasks(text.topic, text.content);
+        if (text.topic.trim() !== '' && text.content.trim() !== '') {
+            addTasks(text.topic, text.content);
+        } else {
+            errorMessage();
+        }
+    }
+
+    const errorMessage = () => {
+        toast.error('Please fill the fallowing form');
     }
 
     return (
         <div className={styles.addtask}>
+            <ToastContainer />
             <div className={styles.addtaskTitle}>
                 <img
                     className={styles.addtaskTitle__icon}
@@ -38,14 +49,18 @@ const AddTask = () => {
                 <h2 className={styles.addtaskTitle__text}>Make New Task</h2>
             </div>
             <div className={styles.addtaskInputs}>
+                <p className={styles.addtask__inputCount}>{text.topic.length}/50</p>
                 <input
+                    maxLength={50}
                     className={styles.addtaskInputs__name}
                     type="text"
                     placeholder='your task topic'
                     onChange={topicHandler}
                     value={text.topic}
                 />
+                <p className={styles.addtask__inputCount}>{text.content.length}/150</p>
                 <textarea
+                    maxLength={150}
                     className={styles.addtaskInputs__content}
                     type="text"
                     placeholder='more info about task'
