@@ -11,6 +11,9 @@ import styles from './AddTask.module.css';
 // Context
 import { TaskContext } from '../context/TaskContextProvider';
 
+// Animation
+import { motion } from 'framer-motion';
+
 const AddTask = () => {
 
     const { addTasks } = useContext(TaskContext);
@@ -67,7 +70,13 @@ const AddTask = () => {
                     onChange={contentHandler}
                     value={text.content}
                 />
-                <button className={styles.addtaskInputs__btn} onClick={submitHandler}>Create New Task</button>
+                <motion.button
+                    className={styles.addtaskInputs__btn}
+                    onClick={submitHandler}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    Create New Task
+                </motion.button>
             </div>
         </div>
     );

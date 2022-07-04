@@ -12,6 +12,9 @@ import Task from './Task';
 // Context
 import { TaskContext } from '../context/TaskContextProvider';
 
+// Animation
+import { AnimatePresence } from 'framer-motion';
+
 const Tasks = () => {
 
     const { tasks, doneTaskList } = useContext(TaskContext);
@@ -38,27 +41,29 @@ const Tasks = () => {
                 </select>
             </div>
             <div className={styles.tasks__container}>
-                {
-                    all ?
-                        tasks.map(task => (
-                            <Task
-                                key={task.id}
-                                id={task.id}
-                                isDone={task.isDone}
-                                topic={task.topic}
-                                content={task.content}
-                            />
-                        )) :
-                        doneTaskList.map(task => (
-                            <Task
-                                key={task.id}
-                                id={task.id}
-                                isDone={task.isDone}
-                                topic={task.topic}
-                                content={task.content}
-                            />
-                        ))
-                }
+                <AnimatePresence>
+                    {
+                        all ?
+                            tasks.map(task => (
+                                <Task
+                                    key={task.id}
+                                    id={task.id}
+                                    isDone={task.isDone}
+                                    topic={task.topic}
+                                    content={task.content}
+                                />
+                            )) :
+                            doneTaskList.map(task => (
+                                <Task
+                                    key={task.id}
+                                    id={task.id}
+                                    isDone={task.isDone}
+                                    topic={task.topic}
+                                    content={task.content}
+                                />
+                            ))
+                    }
+                </AnimatePresence>
             </div>
         </div>
     );
