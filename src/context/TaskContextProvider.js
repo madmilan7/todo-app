@@ -5,7 +5,11 @@ export const TaskContext = createContext();
 
 const TaskContextProvider = ({ children }) => {
 
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(
+        !localStorage.getItem('tasks')
+            ? localStorage.setItem('tasks', JSON.stringify([]))
+            : []
+    );
     const [popUp, setPopUp] = useState({ is: false, item: null });
     const [doneTaskList, setDoneTaskList] = useState([]);
 
@@ -15,18 +19,25 @@ const TaskContextProvider = ({ children }) => {
     }, [tasks]);
 
     const addTasks = (topic, content) => {
+        const oldTask = JSON.parse(localStorage.getItem('tasks'));
         const newTask = {
             id: uuid4(),
             isDone: false,
             topic,
             content
         }
+        localStorage.setItem('tasks', JSON.stringify([newTask, ...oldTask]));
         setTasks([...tasks, newTask]);
     }
+
+    useEffect(() => {
+        setTasks(JSON.parse(localStorage.getItem('tasks')));
+    }, []);
 
     const deleteTask = (id) => {
         const newTask = tasks.filter(task => task.id !== id);
         setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
     const doneTask = (id) => {
@@ -34,6 +45,7 @@ const TaskContextProvider = ({ children }) => {
         const index = newTask.findIndex(task => task.id === id);
         newTask[index].isDone = !newTask[index].isDone;
         setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
     const setId = (id) => {
@@ -46,6 +58,7 @@ const TaskContextProvider = ({ children }) => {
         const index = newTask.findIndex(task => task.id === popUp.item.id);
         newTask[index].topic = text;
         setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
     return (
