@@ -42,6 +42,7 @@ const TaskContextProvider = ({ children }) => {
 
     const deleteAll = () => {
         setTasks([]);
+        localStorage.setItem("tasks", JSON.stringify([]));
     }
 
     const doneTask = (id) => {
