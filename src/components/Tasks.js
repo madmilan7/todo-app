@@ -41,26 +41,31 @@ const Tasks = () => {
             <div className={styles.tasks__container}>
                 <AnimatePresence>
                     {
-                        all ?
-                            tasks.map(task => (
-                                <Task
-                                    key={task.id}
-                                    id={task.id}
-                                    isDone={task.isDone}
-                                    topic={task.topic}
-                                    content={task.content}
-                                />
-                            )) :
-                            doneTaskList.map(task => (
-                                <Task
-                                    key={task.id}
-                                    id={task.id}
-                                    isDone={task.isDone}
-                                    topic={task.topic}
-                                    content={task.content}
-                                />
-                            ))
-                    }
+                        tasks.length !== 0 ? (
+                            all === true ? (
+                                tasks.map(task => (
+                                    <Task
+                                        key={task.id}
+                                        id={task.id}
+                                        isDone={task.isDone}
+                                        topic={task.topic}
+                                        content={task.content}
+                                    />
+                                ))
+                            ) : (
+                                doneTaskList.map(task => (
+                                    <Task
+                                        key={task.id}
+                                        id={task.id}
+                                        isDone={task.isDone}
+                                        topic={task.topic}
+                                        content={task.content}
+                                    />
+                                ))
+                            )
+                        ) : (
+                            <h4 className={styles.nothing}>You dont have any task to do</h4>
+                        )}
                 </AnimatePresence>
             </div>
         </div>
