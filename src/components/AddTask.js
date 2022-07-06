@@ -61,9 +61,9 @@ const AddTask = () => {
                     onChange={topicHandler}
                     value={text.topic}
                 />
-                <p className={styles.addtask__inputCount}>{text.content.length}/150</p>
+                <p className={styles.addtask__inputCount}>{text.content.length}/75</p>
                 <textarea
-                    maxLength={150}
+                    maxLength={75}
                     className={styles.addtaskInputs__content}
                     type="text"
                     placeholder='more info about task'
