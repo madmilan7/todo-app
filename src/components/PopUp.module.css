@@ -33,8 +33,21 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
     width: 100%;
     border: none;
+    border-radius: 5px;
 }
 
+.popUp__content {
+    margin-top: 15px;
+    border-radius: 5px;
+    width: 100%;
+    padding: 8px;
+    height: 100px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
+    resize: none;
+}
+
+.popUp__content:focus,
 .popUp__topic:focus {
     outline: none;
 }

@@ -60,7 +60,8 @@ const TaskContextProvider = ({ children }) => {
     const editTask = (text) => {
         const newTask = [...tasks];
         const index = newTask.findIndex(task => task.id === popUp.item.id);
-        newTask[index].topic = text;
+        newTask[index].topic = text.topic;
+        newTask[index].content = text.content;
         setTasks(newTask);
         localStorage.setItem('tasks', JSON.stringify(newTask));
     }

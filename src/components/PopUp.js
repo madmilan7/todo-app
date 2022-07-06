@@ -10,7 +10,7 @@ import styles from './PopUp.module.css';
 const PopUp = () => {
 
     const { popUp, setPopUp, editTask } = useContext(TaskContext);
-    const [text, setText] = useState("");
+    const [text, setText] = useState({ topic: '', content: '' });
 
     const submitHandler = (isOk) => {
         if (isOk === true) {
@@ -18,11 +18,15 @@ const PopUp = () => {
             toast.success('Task was successfully edited');
         }
         setPopUp({ is: false, item: null });
-        setText("");
+        setText({ topic: '', content: '' });
     };
 
-    const changeHandler = (event) => {
-        setText(event.target.value);
+    const topicHandler = (event) => {
+        setText({ ...text, topic: event.target.value });
+    }
+
+    const contentHandler = (event) => {
+        setText({ ...text, content: event.target.value });
     }
 
     return (
@@ -31,9 +35,17 @@ const PopUp = () => {
             <input
                 className={styles.popUp__topic}
                 type="text"
-                value={text}
-                onChange={changeHandler}
-                placeholder={popUp.item !== null ? "you editing" + popUp.item.topic : "nothing"}
+                maxLength={50}
+                value={text.topic}
+                onChange={topicHandler}
+                placeholder={popUp.item !== null ? 'you editing' + popUp.item.topic : 'nothing'}
+            />
+            <textarea
+                value={text.content}
+                maxLength={75}
+                onChange={contentHandler}
+                placeholder="edit content..."
+                className={styles.popUp__content}
             />
             <div className={styles.popUp__buttons}>
                 <button
