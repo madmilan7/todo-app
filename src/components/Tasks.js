@@ -8,6 +8,7 @@ import styles from './Tasks.module.css';
 
 // Components
 import Task from './Task';
+import DropDown from './DropDown';
 
 // Context
 import { TaskContext } from '../context/TaskContextProvider';
@@ -20,10 +21,10 @@ const Tasks = () => {
     const { tasks, doneTaskList } = useContext(TaskContext);
     const [all, setAll] = useState(true);
 
-    const selectHandler = (event) => {
-        if (event.target.value === 'all') {
+    const changeHandler = (event) => {
+        if (event.target.dataset.category === 'all') {
             setAll(true);
-        } else if (event.target.value === 'done') {
+        } else if (event.target.dataset.category === 'done') {
             setAll(false);
         }
     }
@@ -35,10 +36,7 @@ const Tasks = () => {
                 <h2 className={styles.tasks__title__text}>All Tasks</h2>
             </div>
             <div className={styles.tasks__sort}>
-                <select onClick={selectHandler}>
-                    <option value='all'>All Tasks</option>
-                    <option value='done'>Done Tasks</option>
-                </select>
+                <DropDown changeCategory={changeHandler} all={all} />
             </div>
             <div className={styles.tasks__container}>
                 <AnimatePresence>
