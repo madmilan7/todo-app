@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 
 // Context
 import { TaskContext } from '../context/TaskContextProvider';
@@ -14,6 +15,7 @@ const PopUp = () => {
     const submitHandler = (isOk) => {
         if (isOk === true) {
             editTask(text);
+            toast.success('Task was successfully edited');
         }
         setPopUp({ is: false, item: null });
         setText("");
@@ -31,7 +33,7 @@ const PopUp = () => {
                 type="text"
                 value={text}
                 onChange={changeHandler}
-                placeholder={popUp.item !== null ? "you editing"+ popUp.item.topic : "nothing"}
+                placeholder={popUp.item !== null ? "you editing" + popUp.item.topic : "nothing"}
             />
             <div className={styles.popUp__buttons}>
                 <button
