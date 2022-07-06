@@ -40,6 +40,10 @@ const TaskContextProvider = ({ children }) => {
         localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
+    const deleteAll = () => {
+        setTasks([]);
+    }
+
     const doneTask = (id) => {
         const newTask = [...tasks];
         const index = newTask.findIndex(task => task.id === id);
@@ -62,7 +66,17 @@ const TaskContextProvider = ({ children }) => {
     }
 
     return (
-        <TaskContext.Provider value={{ tasks, addTasks, deleteTask, doneTask, setId, popUp, editTask, doneTaskList }}>
+        <TaskContext.Provider value={{
+            tasks,
+            addTasks,
+            deleteTask,
+            doneTask,
+            setId,
+            popUp,
+            editTask,
+            doneTaskList,
+            deleteAll
+        }}>
             {children}
         </TaskContext.Provider>
     );

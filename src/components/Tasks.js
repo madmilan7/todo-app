@@ -14,11 +14,11 @@ import DropDown from './DropDown';
 import { TaskContext } from '../context/TaskContextProvider';
 
 // Animation
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Tasks = () => {
 
-    const { tasks, doneTaskList } = useContext(TaskContext);
+    const { tasks, doneTaskList, deleteAll } = useContext(TaskContext);
     const [all, setAll] = useState(true);
 
     const changeHandler = (event) => {
@@ -37,6 +37,11 @@ const Tasks = () => {
             </div>
             <div className={styles.tasks__sort}>
                 <DropDown changeCategory={changeHandler} all={all} />
+                <motion.button
+                    onClick={deleteAll}
+                    whileTap={{ scale: 0.9 }}
+                    className={styles.deleteall}>Clear All
+                </motion.button>
             </div>
             <div className={styles.tasks__container}>
                 <AnimatePresence>
