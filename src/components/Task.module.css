@@ -70,4 +70,6 @@
     border-radius: 50%;
     width: 15px;
     height: 15px;
+    cursor: pointer;
+    border: none;
 }

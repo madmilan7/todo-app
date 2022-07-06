@@ -27,7 +27,8 @@ const AddTask = () => {
         setText({ ...text, content: event.target.value });
     }
 
-    const submitHandler = () => {
+    const submitHandler = (event) => {
+        event.preventDefault();
         setText({ topic: '', content: '' });
         if (text.topic.trim() !== '' && text.content.trim() !== '') {
             addTasks(text.topic, text.content);
@@ -51,7 +52,7 @@ const AddTask = () => {
                 />
                 <h2 className={styles.addtaskTitle__text}>Make New Task</h2>
             </div>
-            <div className={styles.addtaskInputs}>
+            <form onSubmit={submitHandler} className={styles.addtaskInputs}>
                 <p className={styles.addtask__inputCount}>{text.topic.length}/50</p>
                 <input
                     maxLength={50}
@@ -72,12 +73,12 @@ const AddTask = () => {
                 />
                 <motion.button
                     className={styles.addtaskInputs__btn}
-                    onClick={submitHandler}
+                    type="submit"
                     whileTap={{ scale: 0.9 }}
                 >
                     Create New Task
                 </motion.button>
-            </div>
+            </form>
         </div>
     );
 };
