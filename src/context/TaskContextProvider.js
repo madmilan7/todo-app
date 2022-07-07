@@ -75,6 +75,7 @@ const TaskContextProvider = ({ children }) => {
             doneTask,
             setId,
             popUp,
+            setPopUp,
             editTask,
             doneTaskList,
             deleteAll

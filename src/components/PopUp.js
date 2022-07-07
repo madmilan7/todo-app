@@ -9,8 +9,8 @@ import styles from './PopUp.module.css';
 
 const PopUp = () => {
 
-    const { popUp, setPopUp, editTask } = useContext(TaskContext);
     const [text, setText] = useState({ topic: '', content: '' });
+    const { popUp, setPopUp, editTask } = useContext(TaskContext);
 
     const submitHandler = (event, isOk) => {
         event.preventDefault();
@@ -31,7 +31,7 @@ const PopUp = () => {
     }
 
     return (
-        <div className={popUp.is === false ? `${styles.popUp}` : `${styles.popUp} ${styles.popUp__show}`}>
+        <div className={popUp.is ? `${styles.popUp} ${styles.popUp__show}` : `${styles.popUp}`}>
             <h4 className={styles.popUp__title}>you are editing: </h4>
             <form onSubmit={(event) => submitHandler(event, true)}>
                 <input
